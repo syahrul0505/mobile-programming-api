@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="">
-        <a href="https://wa.me/6289629600054" class="btn btn-sm btn-primary fw-bolder text-uppercase">Contact</a>
+        <a href="https://api.whatsapp.com/send?phone=6289629600054&text=Hai,%20ada%20yang%20bisa%20kami%20bantu?" class="btn btn-sm btn-primary fw-bolder text-uppercase">Contact</a>
     </div>
 </div>
 
