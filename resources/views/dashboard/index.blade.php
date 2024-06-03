@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="">
-        <a href="https://wa.me/6281514021746" class="btn btn-sm btn-primary fw-bolder text-uppercase">Contact Jooal</a>
+        <a href="https://wa.me/6289629600054" class="btn btn-sm btn-primary fw-bolder text-uppercase">Contact</a>
     </div>
 </div>
 
