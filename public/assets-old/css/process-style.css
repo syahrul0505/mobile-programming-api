@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: rgba(10, 8, 3, 0.85) !important;
+}
+.scroll-style{
+    height: 13rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.scroll-style::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+.border-rt-20{
+    border-radius: 20px 20px 0px 0px !important;
+}
+.border-rb-20{
+    border-radius: 0px 0px 20px 20px !important;
+}
+.border-r-20{
+    border-radius: 20px !important;
+}
+.card,.card-header,.card-footer,ul,li,.modal-header,.modal-body,.modal-footer{
+    background: #e7e7e7 !important;
+}
+
+.modal-content{
+    border-radius: 30px !important;
+}
+.modal-header{
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+}
+.modal-footer{
+    border-top: 1px solid rgba(0,0,0,.125) !important;
+    justify-content:flex-start !important;
+    border-bottom-left-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+}
+.modal-header .btn-close{
+    margin-right: 5px !important;
+    font-size: 1.5rem;
+    padding: 1rem !important;
+}
+.modal-header .btn-close:hover{
+    background-color: rgba(0,0,0,.125) !important;
+    border-radius: 15px !important;
+}
+.modal-title{
+    font-weight: 700 !important;
+}
