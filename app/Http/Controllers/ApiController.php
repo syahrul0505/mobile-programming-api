@@ -135,7 +135,7 @@ class ApiController extends Controller
         $product = Product::orderBy('id', 'ASC')->get()->map(function($item){
             $data['id'] = $item->id;
             $data['name'] = $item->name;
-            // $data['category'] = $item->category->tag_name;
+            $data['category'] = $item->category_id;
             $data['purchase_price'] = $item->purchase_price;
             $data['selling_price'] = $item->selling_price;
             $data['status'] = $item->status;
