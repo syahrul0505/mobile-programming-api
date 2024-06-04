@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $data['page_title'] = 'Add Product';
         $data['product'] = Product::get();
-        $data['tags'] = Tag::get();
+        $data['categorys'] = Tag::get();
         return view('management-toko-online.restaurant.create',$data);
     }
 
@@ -44,6 +44,7 @@ class ProductController extends Controller
                 'name' => 'required',
                 'purchase_price' => 'nullable',
                 'selling_price' => 'nullable',
+                'category_id' => 'nullable',
                 'status' => 'required',
                 'tag_id' => 'nullable',
                 'description' => 'nullable',
@@ -52,6 +53,7 @@ class ProductController extends Controller
             $product = new Product();
             $product->name = $validateData['name'];
             $product->purchase_price = $validateData['purchase_price'];
+            $product->category_id = $validateData['category_id'];
             $product->selling_price = $validateData['selling_price'];
             $product->status = $validateData['status'];
             $product->description = $validateData['description'];
@@ -97,7 +99,7 @@ class ProductController extends Controller
     {
         $data['page_title'] = 'Edit Product';
         $data['product'] = Product::findorFail($id);
-        $data['tags'] = Tag::get();
+        $data['categorys'] = Tag::get();
         $data['product_tags'] = ProductTag::where("product_id", $id)
         ->pluck('tag_id')
         ->all();
@@ -114,6 +116,7 @@ class ProductController extends Controller
             'name' => 'required',
             'purchase_price' => 'nullable',
             'selling_price' => 'nullable',
+            'category)id' => 'nullable',
             'status' => 'required',
             'tag_id' => 'nullable',
             'description' => 'nullable',
@@ -123,6 +126,7 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $product->name = $validateData['name'];
             $product->purchase_price = $validateData['purchase_price'];
+            $product->category_id = $validateData['category_id'];
             $product->selling_price = $validateData['selling_price'];
             $product->status = $validateData['status'];
             $product->description = $validateData['description'];

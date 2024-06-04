@@ -44,25 +44,21 @@
                             @enderror
                         </div>
 
-                        <div class="col-lg-4">
-                            <div class="form-group mb-3">
+                        <div class="col-4">
+                            <div class="form-group"style="text-align: left">
                                 <label class="form-label">Category</label>
-                                <select name="tag_id[]" class="form-control tag-input-select2" style="width:100%" multiple="multiple" data-placeholder="Select The Permissions" multiple data-dropdown-css-class="select2-purple">
-                                    @foreach ($tags as $tag)
-                                        <option value="{{$tag->id}}" class="tagOption"
-                                            @foreach (old('tag_id') ?? [] as $id)
-                                                @if ($id == $tag->id)
-                                                    {{ 'selected' }}
-                                                @endif
-                                            @endforeach>
-                                            {{$tag->tag_name}}
-                                        </option>
+                                <select class="form-select mr-sm-2 @error('category_id') is-invalid @enderror" id="category_id" name="category_id" style="width:100%">
+                                    <option disabled selected>Choose Category</option>
+                                    @foreach ($categorys as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->tag_name }} </option>
                                     @endforeach
                                 </select>
-                                @error('tag_id')
-                                    <span class="text-danger text-sm">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>

@@ -8,6 +8,7 @@ use App\Models\MeetingRoom;
 use App\Models\MenuPackages;
 use App\Models\Product;
 use App\Models\Restaurant;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -142,6 +143,17 @@ class ApiController extends Controller
             $data['image'] = asset('assets/images/product/' . ($item->image ?? 'no-pictures.png'));
             $data['description'] = $item->description;
             $data['slug'] = $item->slug;
+            return $data;
+        });
+
+        return response()->json($product);
+    }
+    public function getApiCategory()
+    {
+        // $image = Storage::get($path);
+        $product = Tag::orderBy('id', 'ASC')->get()->map(function($item){
+            $data['id'] = $item->id;
+            $data['name'] = $item->name;
             return $data;
         });
 

@@ -47,20 +47,21 @@
                             </div>
 
                             <div class="col-lg-4">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Tag</label>
-                                    <select name="tag_id[]" id="e1" class="js-example-basic-multiple select2-department select2" id="e1" multiple="multiple" style="width:100%">
-                                        @foreach ($tags as $tag)
-                                            <option value="{{$tag->id}}"
-                                                @foreach (old('tag_id') ?? $product_tags as $id)
-                                                    @if ($id == $tag->id)
-                                                        {{ 'selected' }}
-                                                    @endif
-                                                @endforeach>
-                                                {{$tag->tag_name}}
-                                            </option>
+                                <div class="form-group mt-2" style="text-align: left">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select form-select-sm mr-sm-2 @error('category_id') is-invalid @enderror" id="category_id" name="category_id" style="width:100%">
+                                        <option disabled selected>Choose Category</option>
+                                        @foreach ($categorys as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ $category->tag_name }} </option>
                                         @endforeach
                                     </select>
+                                    @error('category_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
