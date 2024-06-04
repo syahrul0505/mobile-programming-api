@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('tokoonline/resto', [ApiController::class, 'getApiResto']);
+Route::get('tokoonline/user', [ApiController::class, 'getApiUser']);
 Route::get('tokoonline/detail/{type}/{slug}', [ApiController::class, 'getApiDetail']);
 Route::get('tokoonline/biliard', [ApiController::class, 'getApiBiliard']);
 Route::get('tokoonline/meetingroom', [ApiController::class, 'getApiMeetingRoom']);

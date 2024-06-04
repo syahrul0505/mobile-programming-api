@@ -148,6 +148,20 @@ class ApiController extends Controller
         return response()->json($product);
     }
 
+    public function getApiUser()
+    {
+        // $image = Storage::get($path);
+        $product = User::orderBy('id', 'ASC')->get()->map(function($item){
+            $data['id'] = $item->id;
+            $data['name'] = $item->name;
+            $data['email'] = $item->email;
+            $data['password'] = $item->password;
+            return $data;
+        });
+
+        return response()->json($product);
+    }
+
     public function getApiPaketMenu()
     {
         // $image = Storage::get($path);
