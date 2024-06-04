@@ -153,7 +153,7 @@ class ApiController extends Controller
         // $image = Storage::get($path);
         $product = Tag::orderBy('id', 'ASC')->get()->map(function($item){
             $data['id'] = $item->id;
-            $data['name'] = $item->name;
+            $data['name'] = $item->tag_name;
             return $data;
         });
 
