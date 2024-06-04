@@ -135,7 +135,7 @@ class ApiController extends Controller
         $product = Product::orderBy('id', 'ASC')->get()->map(function($item){
             $data['id'] = $item->id;
             $data['name'] = $item->name;
-            $data['category'] = $item->category;
+            $data['category'] = $item->category->tag_name;
             $data['purchase_price'] = $item->purchase_price;
             $data['selling_price'] = $item->selling_price;
             $data['status'] = $item->status;
@@ -158,6 +158,65 @@ class ApiController extends Controller
         });
 
         return response()->json($product);
+    }
+    public function postCart()
+    {
+        $data ['other_setting'] = OtherSetting::get()->first();
+
+        if (Auth::check()) {
+            # code...
+            $data['data_carts'] = \Cart::session(Auth::user()->id)->getContent();
+        }else{
+            $user = 'guest';
+            $data['cart_guest'] = \Cart::session($user)->getContent();
+        }
+        // dd($data['data_carts'][0]['attributes']);
+        $processedCartItems = [];
+
+        if (Auth::check()) {
+            foreach ($data['data_carts'] as $cartItem) {
+                // Access individual cart item properties
+                $id = $cartItem->id;
+                $name = $cartItem->name;
+                $price = $cartItem->price;
+                $quantity = $cartItem->quantity;
+                $conditions = $cartItem->conditions;
+
+                $cartItemData = [
+                    'id' => $id,
+                    'name' => $name,
+                    'price' => $price,
+                    'quantity' => $quantity,
+                    'conditions' => $conditions,
+                    // ... and so on
+                ];
+               
+                
+            }
+            return response()->json($data);
+        }else{
+            foreach ($data['cart_guest'] as $cartItem) {
+                // Access individual cart item properties
+                $id = $cartItem->id;
+                $name = $cartItem->name;
+                $price = $cartItem->price;
+                $quantity = $cartItem->quantity;
+                $conditions = $cartItem->conditions;
+
+                $cartItemData = [
+                    'id' => $id,
+                    'name' => $name,
+                    'price' => $price,
+                    'quantity' => $quantity,
+                    'conditions' => $conditions,
+                    // ... and so on
+                ];
+
+            }
+            return response()->json($data);
+        }
+
+
     }
 
     public function getApiUser()
