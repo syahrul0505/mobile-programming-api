@@ -73,8 +73,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->purchase_price }}</td>
-                                    <td>{{ $product->selling_price }}</td>
+                                    <td>{{ number_format($product->purchase_price,0) }}</td>
+                                    <td>{{ number_format($product->selling_price,0) }}</td>
                                     <td>{{ $product->current_stock ?? 0 }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">

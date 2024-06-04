@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Biliard;
 use App\Models\MeetingRoom;
 use App\Models\MenuPackages;
+use App\Models\Product;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -130,21 +131,21 @@ class ApiController extends Controller
     public function getApiResto()
     {
         // $image = Storage::get($path);
-        $banner = Restaurant::orderBy('id', 'ASC')->get()->map(function($item){
+        $product = Product::orderBy('id', 'ASC')->get()->map(function($item){
             $data['id'] = $item->id;
-            $data['nama'] = $item->nama;
+            $data['name'] = $item->name;
             $data['category'] = $item->category;
-            $data['no_meja'] = $item->no_meja;
-            $data['harga'] = $item->harga;
-            $data['harga_diskon'] = $item->harga_diskon;
+            $data['purchase_price'] = $item->purchase_price;
+            $data['selling_price'] = $item->selling_price;
             $data['status'] = $item->status;
-            $data['image'] = asset('assets/images/restaurant/' . ($item->image ?? 'no-pictures.png'));
+            $data['currrent_stock'] = $item->currrent_stock;
+            $data['image'] = asset('assets/images/product/' . ($item->image ?? 'no-pictures.png'));
             $data['description'] = $item->description;
             $data['slug'] = $item->slug;
             return $data;
         });
 
-        return response()->json($banner);
+        return response()->json($product);
     }
 
     public function getApiPaketMenu()
