@@ -116,7 +116,7 @@ class ProductController extends Controller
             'name' => 'required',
             'purchase_price' => 'nullable',
             'selling_price' => 'nullable',
-            'category)id' => 'nullable',
+            'category_id' => 'nullable',
             'status' => 'required',
             'tag_id' => 'nullable',
             'description' => 'nullable',
