@@ -115,7 +115,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('restaurants.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body">
                                         <div class="row">
@@ -293,45 +293,41 @@
                                 }
                                 $dataTags = implode(',', $tagNames);
                             @endphp
-                            @if ($restaurant->status == "active")
-                                <div class="col-6 col-sm-3 col-md-4 card-restor resto-product" data-tags="{{ $dataTags }}">
-                                    <div class="card">
-                                        <div class="position-absolute btn-dropdown-custome" style="right:0rem; top:0rem;">
-                                            <div class="dropdown">
-                                                <button class="btn bg-transparent p-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="right: 0.5rem;">
-                                                    <i class="fa-solid fa fa-ellipsis-v"></i>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li>
-                                                        <a class="dropdown-item" href="#restaurant-edit-{{ $restaurant->id }}" data-bs-toggle="modal" data-bs-target="#restaurant-edit-{{ $restaurant->id }}">Edit Menu</a>
-                                                    </li>
-                                                    
-                                                    <li><a class="dropdown-item" href="#" onclick="modalDelete('Restaurant', '{{ $restaurant->name }}', '/restaurants/' + {{ $restaurant->id }}, '/restaurants/')">Delete Menu</a></li>
-                                                </ul>
-                                            </div>
+                            <div class="col-6 col-sm-3 col-md-4 card-restor resto-product" data-tags="{{ $dataTags }}">
+                                <div class="card">
+                                    <div class="position-absolute btn-dropdown-custome" style="right:0rem; top:0rem;">
+                                        <div class="dropdown">
+                                            <button class="btn bg-transparent p-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="right: 0.5rem;">
+                                                <i class="fa-solid fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li>
+                                                    <a class="dropdown-item" href="#restaurant-edit-{{ $restaurant->id }}" data-bs-toggle="modal" data-bs-target="#restaurant-edit-{{ $restaurant->id }}">Edit Menu</a>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#" onclick="modalDelete('Restaurant', '{{ $restaurant->name }}', '/restaurants/' + {{ $restaurant->id }}, '/restaurants/')">Delete Menu</a></li>
+                                            </ul>
                                         </div>
-                                        @include('shop.edit-restaurant')
+                                    </div>
 
-                                        <div class="card-body h-100 product-grid6 card-resto" data-bs-toggle="modal" data-bs-target="#detail-resto-{{ $restaurant->id }}">
-                                            <div class="pro-img-box product-image">
-                                                @if ($restaurant->image == null)
-                                                    <img src="{{ asset('assets/images/logos/bengkel.jpg') }}" alt="." class="rounded-2 d-block mx-auto" style="width: 4rem !important;">
-                                                @else
-                                                    <img src="{{ asset('assets/images/restaurant/'.($restaurant->image ?? 'bengkel.jpg')) }}" alt="." class="rounded-2 d-block mx-auto" style="width: 5rem !important;">
-                                                @endif
-                                            </div>
-                                            <div class="text-center pt-2">
-                                                <h3 class="fw-bolder h6 mb-2 mt-4 font-weight-bold text-uppercase">{{ $restaurant->name }}</h3>
-                                                @if ($restaurant->price_discount == 0)
-                                                    <h4 class="fw-bolder h5 mb-0 mt-1 text-center font-weight-bold  tx-15">Rp. {{ number_format($restaurant->price,0) }} </h4>
-                                                @else
-                                                    <h4 class="fw-bolder h5 mb-0 mt-1 text-center font-weight-bold  tx-15">Rp. {{ $restaurant->price_discount }}</h4>
-                                                @endif
-                                            </div>
+                                    <div class="card-body h-100 product-grid6 card-resto" data-bs-toggle="modal" data-bs-target="#detail-resto-{{ $restaurant->id }}">
+                                        <div class="pro-img-box product-image">
+                                            @if ($restaurant->image == null)
+                                                <img src="{{ asset('assets/images/logos/bengkel.jpg') }}" alt="." class="rounded-2 d-block mx-auto" style="width: 4rem !important;">
+                                            @else
+                                                <img src="{{ asset('assets/images/restaurant/'.($restaurant->image ?? 'bengkel.jpg')) }}" alt="." class="rounded-2 d-block mx-auto" style="width: 5rem !important;">
+                                            @endif
+                                        </div>
+                                        <div class="text-center pt-2">
+                                            <h3 class="fw-bolder h6 mb-2 mt-4 font-weight-bold text-uppercase">{{ $restaurant->name }}</h3>
+                                            @if ($restaurant->price_discount == 0)
+                                                <h4 class="fw-bolder h5 mb-0 mt-1 text-center font-weight-bold  tx-15">Rp. {{ number_format($restaurant->purchase_price,0) }} </h4>
+                                            @else
+                                                <h4 class="fw-bolder h5 mb-0 mt-1 text-center font-weight-bold  tx-15">Rp. {{ $restaurant->price_discount }}</h4>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
                         @include('shop.detail')
                         @endforeach
                     </div>

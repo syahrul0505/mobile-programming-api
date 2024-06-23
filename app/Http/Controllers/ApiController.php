@@ -6,11 +6,14 @@ use App\Models\Banner;
 use App\Models\Biliard;
 use App\Models\MeetingRoom;
 use App\Models\MenuPackages;
+use App\Models\Order;
+use App\Models\OtherSetting;
 use App\Models\Product;
 use App\Models\Restaurant;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 class ApiController extends Controller
@@ -148,6 +151,7 @@ class ApiController extends Controller
 
         return response()->json($product);
     }
+
     public function getApiCategory()
     {
         // $image = Storage::get($path);
@@ -159,6 +163,35 @@ class ApiController extends Controller
 
         return response()->json($product);
     }
+
+    public function checkout($request)
+    {
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'name' => 'Syahrul',
+            'phone' => '089629600054',
+            'qty' => $request->qty,
+            // 'total_price' => $total_price,
+            'status_pembayaran' => 'Paid',
+            'status_pesanan' => 'process',
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        $order_detail = new OrderDetail();
+        $order_detail->order_id = $order->id;
+        $order_detail->restaurant_id = $item->attributes['restaurant']['id'];
+        $order_detail->category = $item->attributes['restaurant']['category'];
+        $order_detail->qty = $item['quantity'];
+        $order_detail->price_discount = $harga_diskon;
+        $order_detail->modal = $item->attributes['restaurant']['modal'];
+        $order_detail->description = $item->attributes['description'];
+
+        $order_detail->save();
+
+        return response()->json($product);
+    }
+
+
     public function postCart()
     {
         $data ['other_setting'] = OtherSetting::get()->first();

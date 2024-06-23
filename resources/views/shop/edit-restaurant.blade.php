@@ -124,6 +124,18 @@
                                     </div>
 
                                     <div class="col-lg-12">
+                                        <div class="form-group mb-3">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input type="number" name="price" id="price" value="{{ old('price') ?? $restaurant->price }}" class="form-control" placeholder="price" id="price" aria-describedby="price">
+                                        </div>
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                            <label for="description">Description</label>
                                            <textarea name="description-restaurant" class="form-control" id="description" rows="4">{{ $restaurant->description }}</textarea>

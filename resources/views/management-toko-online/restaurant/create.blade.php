@@ -114,6 +114,18 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-4">
+                            <div class="form-group mb-3">
+                                <label for="current_stock" class="form-label">Current Stock</label>
+                                <input type="number" name="current_stock" id="current_stock" value="{{ old('current_stock') }}" class="form-control" placeholder="Ex:20.000" id="current_stock" aria-describedby="current_stock">
+                            </div>
+                            @error('current_stock')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <div class="col-lg-12">
                             <div class="form-group">
                                <label for="description">Description</label>

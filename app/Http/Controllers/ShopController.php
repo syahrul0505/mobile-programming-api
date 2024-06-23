@@ -6,6 +6,8 @@ use App\Models\AddOn;
 use App\Models\Discount;
 use App\Models\Order;
 use App\Models\OtherSetting;
+use App\Models\Product;
+use App\Models\ProductTag;
 use App\Models\Restaurant;
 use App\Models\RestaurantAddOn;
 use App\Models\RestaurantTag;
@@ -17,9 +19,9 @@ use Illuminate\Support\Facades\Auth;
 class ShopController extends Controller
 {
     public function index(Request $request){
-        return redirect()->back()->with(['failed' => 'Izin Terlebih Dahulu Ke Admin!']);
+        // return redirect()->back()->with(['failed' => 'Izin Terlebih Dahulu Ke Admin!']);
 
-        $data ['restaurants'] = Restaurant::get();
+        $data ['restaurants'] = Product::get();
         $data['tags'] = Tag::get();
         $data['discounts'] = Discount::get();
         $data ['other_setting'] = OtherSetting::get()->first();
@@ -28,14 +30,10 @@ class ShopController extends Controller
                 ->orderBy('invoice_no', 'desc')
                 ->get();
 
-        $data['add_ons'] = AddOn::get();
-        $data['restaurant_tags'] = RestaurantTag::where("restaurant_id",$request->id)
+        $data['restaurant_tags'] = ProductTag::where("product_id",$request->id)
         ->pluck('tag_id')
         ->all();
 
-        $data['restaurant_add_on'] = RestaurantAddOn::where("restaurant_id",$request->id)
-        ->pluck('add_on_id')
-        ->all();
         if (Auth::check()) {
             # code...
             $data['data_carts'] = \Cart::session(Auth::user()->id)->getContent();

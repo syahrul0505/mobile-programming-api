@@ -44,6 +44,7 @@ class ProductController extends Controller
                 'name' => 'required',
                 'purchase_price' => 'nullable',
                 'selling_price' => 'nullable',
+                'current_stock' => 'nullable',
                 'category_id' => 'nullable',
                 'status' => 'required',
                 'tag_id' => 'nullable',
@@ -55,6 +56,7 @@ class ProductController extends Controller
             $product->purchase_price = $validateData['purchase_price'];
             $product->category_id = $validateData['category_id'];
             $product->selling_price = $validateData['selling_price'];
+            $product->current_stock = $validateData['current_stock'];
             $product->status = $validateData['status'];
             $product->description = $validateData['description'];
 
@@ -116,6 +118,7 @@ class ProductController extends Controller
             'name' => 'required',
             'purchase_price' => 'nullable',
             'selling_price' => 'nullable',
+            'current_stock' => 'nullable',
             'category_id' => 'nullable',
             'status' => 'required',
             'tag_id' => 'nullable',
@@ -128,6 +131,7 @@ class ProductController extends Controller
             $product->purchase_price = $validateData['purchase_price'];
             $product->category_id = $validateData['category_id'];
             $product->selling_price = $validateData['selling_price'];
+            $product->current_stock = $validateData['current_stock'];
             $product->status = $validateData['status'];
             $product->description = $validateData['description'];
 

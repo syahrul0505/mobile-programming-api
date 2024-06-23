@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+
+    public function restaurantTag()
+    {
+        return $this->hasMany(ProductTag::class);
+    }
 }
