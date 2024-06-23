@@ -33,15 +33,15 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('id');
         date_default_timezone_set('Asia/Jakarta');
 
-        // $isHttps = env('IS_HTTPS', false);
+        $isHttps = env('IS_HTTPS', false);
 
-        // if ($isHttps === true) {
-        //     $this->app['request']->server->set('HTTPS', true);
-        //     URL::forceScheme('https');
-        // }
+        if ($isHttps === true) {
+            $this->app['request']->server->set('HTTPS', true);
+            URL::forceScheme('https');
+        }
 
-        // $this->app['request']->server->set('HTTPS', true);
-        // URL::forceScheme('https');
+        $this->app['request']->server->set('HTTPS', true);
+        URL::forceScheme('https');
 
         view()->composer('*', function (){
             // $orderTable = User::get();
