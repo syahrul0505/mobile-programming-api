@@ -170,7 +170,7 @@ class ApiController extends Controller
     {
         // Buat order
         $order = Order::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => 1,
             'name' => 'Syahrul',
             'phone' => '089629600054',
             'qty' => $request->qty,
@@ -184,12 +184,9 @@ class ApiController extends Controller
         foreach ($request->items as $item) {
             $order_detail = new OrderDetail();
             $order_detail->order_id = $order->id;
-            $order_detail->restaurant_id = $item['restaurant_id'];
             $order_detail->category = $item['category'];
             $order_detail->qty = $item['quantity'];
             $order_detail->price_discount = $item['price_discount'];
-            $order_detail->modal = $item['modal'];
-            $order_detail->description = $item['description'];
             $order_detail->save();
         }
 
