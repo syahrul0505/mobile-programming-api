@@ -175,6 +175,7 @@ class ApiController extends Controller
             'phone' => '089629600054',
             'qty' => $request->qty,
             'sub_total' => $request->sub_total,
+            'total_price' => $request->total_price,
             'status_pembayaran' => 'Paid',
             'status_pesanan' => 'process',
             'created_at' => now(),
