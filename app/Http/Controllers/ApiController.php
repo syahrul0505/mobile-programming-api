@@ -185,7 +185,7 @@ class ApiController extends Controller
         foreach ($request->items as $item) {
             $order_detail = new OrderDetail();
             $order_detail->order_id = $order->id;
-            $order_detail->category = $item['category'];
+            $order_detail->name = $item['name'];
             $order_detail->qty = $item['quantity'];
             $order_detail->price_discount = $item['price_discount'];
             $order_detail->save();
