@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('tokoonline/resto', [ApiController::class, 'getApiResto']);
 Route::get('tokoonline/category', [ApiController::class, 'getApiCategory']);
+Route::post('/checkout',[ApiController::class,'checkout'])->name('checkout');
 Route::get('/tokoonline/cart/{id}',[ApiController::class, 'postCart']);
 Route::get('tokoonline/user', [ApiController::class, 'getApiUser']);
 Route::get('tokoonline/detail/{type}/{slug}', [ApiController::class, 'getApiDetail']);

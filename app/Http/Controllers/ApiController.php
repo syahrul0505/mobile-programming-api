@@ -163,6 +163,7 @@ class ApiController extends Controller
 
         return response()->json($product);
     }
+    
 
     public function checkout($request)
     {
