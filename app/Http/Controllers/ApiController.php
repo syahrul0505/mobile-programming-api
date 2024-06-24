@@ -194,6 +194,36 @@ class ApiController extends Controller
         return response()->json(['message' => 'Order created successfully', 'order' => $order]);
     }
 
+    public function detailTransaksi()
+    {
+        $orders = Order::with('orderDetails')->orderBy('id', 'ASC')->get()->map(function($item){
+            $data['id'] = $item->id;
+            $data['name'] = $item->name;
+            $data['phone'] = $item->phone ?? '-';
+            $data['qty'] = $item->qty;
+            $data['status_pembayaran'] = $item->status_pembayaran;
+
+            // Menambahkan order details
+            $data['order_details'] = $item->orderDetails->map(function($detail) {
+                return [
+                    'id' => $detail->id,
+                    'product_id' => $detail->product_id,
+                    'name' => $detail->name,
+                    'category' => $detail->category,
+                    'qty' => $detail->qty,
+                    'price_discount' => $detail->price_discount,
+                    'price' => $detail->price,
+                    'status_pesanan' => $detail->status_pesanan,
+                ];
+            });
+
+            return $data;
+        });
+
+        return response()->json($orders);
+    }
+
+
 
     public function postCart()
     {
