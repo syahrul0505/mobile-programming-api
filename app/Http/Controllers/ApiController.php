@@ -142,7 +142,7 @@ class ApiController extends Controller
             $data['purchase_price'] = $item->purchase_price;
             $data['selling_price'] = $item->selling_price;
             $data['status'] = $item->status;
-            $data['currrent_stock'] = $item->currrent_stock;
+            $data['current_stock'] = $item->current_stock;
             $data['image'] = asset('assets/images/product/' . ($item->image ?? 'no-pictures.png'));
             $data['description'] = $item->description;
             $data['slug'] = $item->slug;
