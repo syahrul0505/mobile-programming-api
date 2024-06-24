@@ -7,6 +7,7 @@ use App\Models\Biliard;
 use App\Models\MeetingRoom;
 use App\Models\MenuPackages;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\OtherSetting;
 use App\Models\Product;
 use App\Models\Restaurant;
@@ -165,8 +166,9 @@ class ApiController extends Controller
     }
     
 
-    public function checkout($request)
+    public function checkout(Request $request)
     {
+        // Buat order
         $order = Order::create([
             'user_id' => auth()->user()->id,
             'name' => 'Syahrul',
@@ -175,21 +177,23 @@ class ApiController extends Controller
             // 'total_price' => $total_price,
             'status_pembayaran' => 'Paid',
             'status_pesanan' => 'process',
-            'created_at' => date('Y-m-d H:i:s'),
+            'created_at' => now(),
         ]);
 
-        $order_detail = new OrderDetail();
-        $order_detail->order_id = $order->id;
-        $order_detail->restaurant_id = $item->attributes['restaurant']['id'];
-        $order_detail->category = $item->attributes['restaurant']['category'];
-        $order_detail->qty = $item['quantity'];
-        $order_detail->price_discount = $harga_diskon;
-        $order_detail->modal = $item->attributes['restaurant']['modal'];
-        $order_detail->description = $item->attributes['description'];
+        // Buat order detail untuk setiap item
+        foreach ($request->items as $item) {
+            $order_detail = new OrderDetail();
+            $order_detail->order_id = $order->id;
+            $order_detail->restaurant_id = $item['restaurant_id'];
+            $order_detail->category = $item['category'];
+            $order_detail->qty = $item['quantity'];
+            $order_detail->price_discount = $item['price_discount'];
+            $order_detail->modal = $item['modal'];
+            $order_detail->description = $item['description'];
+            $order_detail->save();
+        }
 
-        $order_detail->save();
-
-        return response()->json($product);
+        return response()->json(['message' => 'Order created successfully', 'order' => $order]);
     }
 
 
